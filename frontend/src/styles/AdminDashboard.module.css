@@ -1,0 +1,285 @@
+.dashboardContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  color: #1e293b;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 260px;
+  background-color: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.logo {
+  padding: 0 24px 32px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #818cf8;
+}
+
+.navGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+}
+
+.navItem {
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.navItem:hover {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+.activeNavItem {
+  background-color: #312e81;
+  color: #fff;
+}
+
+/* Main Content Styles */
+.mainContent {
+  flex: 1;
+  padding: 40px;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.header h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Stats Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.statCard {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.statValue {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+/* Table Styles */
+.tableWrapper {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tableHeader {
+  padding: 20px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  font-weight: 600;
+}
+
+.adminTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.adminTable th {
+  background: #f1f5f9;
+  padding: 12px 24px;
+  font-size: 0.75rem;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+.adminTable td {
+  padding: 16px 24px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.875rem;
+}
+
+.statusBadge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.statusSuccess {
+  background: #dcfce7;
+  color: #166534;
+}
+.statusFailed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.errorState {
+  color: #ef4444;
+  padding: 40px;
+  text-align: center;
+}
+.loadingState {
+  padding: 40px;
+  text-align: center;
+  color: #64748b;
+}
+
+.welcomeTitle {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.viewAllBtn {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.viewAllBtn:hover {
+  text-decoration: underline;
+}
+
+.emailCell {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.monoText {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.deviceText {
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.dangerText {
+  color: #ef4444;
+}
+.primaryText {
+  color: #6366f1;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 80px;
+  border: 2px dashed #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  color: #94a3b8;
+}
+
+.roleBadge {
+  background: #e0e7ff;
+  color: #4338ca;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.deleteBtn {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.deleteBtn:hover {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+/* User management specific tweaks */
+.adminTable td {
+  vertical-align: middle;
+}
+
+/* Chart Container Fixes */
+.chartWrapper {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 350px; /* Crucial: ensures height > 0 for Recharts */
+  display: flex;
+  flex-direction: column;
+}
+
+.twoColumnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}

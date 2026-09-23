@@ -1,0 +1,221 @@
+[33mcommit ecb1269b8615d18ceff246d79c082ba4dca9aa0e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Stefania Ionescu <stefanya_yo_18@yahoo.com>
+Date:   Tue Aug 25 17:19:44 2026 +0300
+
+    fix(frontend): resolve node_modules permissions and TypeScript build issue
+
+[33mcommit ab3ef559182f9ae0960ae86e3c19486ed088f7de[m
+Author: Stefania Ionescu <stefanya_yo_18@yahoo.com>
+Date:   Wed Aug 19 14:31:15 2026 +0300
+
+    Change README file
+
+[33mcommit 1a990168ec7344837e87f8330dd6e5c2a9dd5999[m
+Author: Stefania Ionescu <stefanya_yo_18@yahoo.com>
+Date:   Mon Aug 17 15:09:21 2026 +0300
+
+    Change the README.md file
+
+[33mcommit 77303f292b91736354c647bad9fbda4ba7c21d10[m
+Author: Stefania Ionescu <stefanya_yo_18@yahoo.com>
+Date:   Sun Aug 16 17:16:56 2026 +0300
+
+    Change the README.md file
+
+[33mcommit ba957ff157b672ad8a9f20af1fc7304e5797b1ce[m
+Author: Stefania Ionescu <stefanya_yo_18@yahoo.com>
+Date:   Sat Aug 15 15:02:23 2026 +0300
+
+    Fix bug in Caddyfile and prometheus.php
+
+[33mcommit 6ae895dfecd71a2465d3db05f174cce11433004a[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Sat Aug 15 10:01:46 2026 +0300
+
+    Add Docker in all project
+
+[33mcommit dfcf5cfbe7490766753315fe42e742a4ba4fb8f2[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Tue Aug 11 14:44:45 2026 +0300
+
+    Fix style for files in backend with vendor/bin/pint
+
+[33mcommit 01c188ae1b2c0a177b41d36406e5251f7e736af6[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Thu Aug 6 14:17:24 2026 +0300
+
+    Change README file
+
+[33mcommit 9f93b39e1617ee9aa80309eaa36cf223d1a1769b[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Wed Jun 17 03:44:23 2026 +0300
+
+    Add @type in frontend
+
+[33mcommit 73de5826ed5909add67f38a1a2066068595055f9[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Wed Jun 3 19:10:58 2026 +0300
+
+    Fix Horizon Dashboard
+
+[33mcommit faadba7dd96b1d3e5aff8101dcc81b5d589dc6f2[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Wed Jun 3 00:46:34 2026 +0300
+
+    Add ActivityTable to Admin Dashboard
+
+[33mcommit 0aa51dcbb37dcfbbe7b9656cc9162d9d73f15fd3[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Tue Jun 2 20:18:21 2026 +0300
+
+    Add Laravel Horizon
+
+[33mcommit 86c0b4540805267f9dfe21137d52de03dcd5936a[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Fri May 29 00:45:40 2026 +0300
+
+    refactor: centralize TypeScript types and remove implicit any usage
+
+[33mcommit d689fff3b73493132588bf15fe9693fffac59fc9[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Thu Apr 30 13:23:07 2026 +0300
+
+    Add help file and gitignore file
+
+[33mcommit ed3762ccdd2a13762d841510e87c2dc54d0ba9d8[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Thu Apr 30 12:47:15 2026 +0300
+
+    Delete the help file
+
+[33mcommit 1a8c012dadc0c05417692e7b70ba2bb21a6af23e[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Fri Apr 17 00:25:24 2026 +0300
+
+    Change bugs in backend auth
+
+[33mcommit e9a96b1419bbfc599073e46e4fef99f5d919f721[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Thu Apr 16 00:11:51 2026 +0300
+
+    Add improvments to email style
+
+[33mcommit ab0c6564760394dd5f004504e5b1303d6a4f0258[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Wed Apr 15 23:47:01 2026 +0300
+
+    Add logs mongoDB and Read/Delete User for admin
+
+[33mcommit b50406fc33755c57f4360cbd7cba60e37ff5adba[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Tue Apr 14 23:47:46 2026 +0300
+
+    Make improvemnts in backend folders strucdture
+
+[33mcommit 1500919534b2f7eedac197d85aec100a81cda03d[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Tue Apr 14 23:19:42 2026 +0300
+
+    Separate the business login in backend Laravel
+
+[33mcommit af26f8ca60e28c4e9b6c212b1e7b8321528001d0[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Tue Apr 7 01:35:39 2026 +0300
+
+    Add resources and requests to the backend
+
+[33mcommit a45acd37e75f302b4d21764781c8f8e306519965[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Thu Mar 26 21:43:14 2026 +0200
+
+    Add Create Fresh Token
+
+[33mcommit dd2153e1f8c663edee0df652f9b4ca5b28c5d001[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Wed Mar 25 23:58:18 2026 +0200
+
+    feat(auth): implement refresh token rotation for JWT authentication
+    - store hashed refresh tokens in DB
+    - revoke old tokens on rotation
+    - use HttpOnly cookie for refresh token
+
+[33mcommit 3b29a0ffab223d3de841d941b354da8211adbca0[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Wed Mar 25 01:59:17 2026 +0200
+
+    Add Toast Notifiy Error Message for login and Register pages
+
+[33mcommit a8e77f98fce63256185729c4b7a80bed14b5789e[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Wed Mar 25 01:07:04 2026 +0200
+
+    Fix the login and register bugs
+
+[33mcommit 62759ad8605ed4a946f0bb1924d4d1981852d07d[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Tue Mar 24 03:02:42 2026 +0200
+
+    Convert to refresh token architecture with HttpOnly cookies
+    
+    - Store access token only in memory (Zustand), not localStorage
+    - Store refresh token in HttpOnly cookie, inaccessible to JS
+    - Implement automatic token refresh when access token expires
+    - Backend: generate short-lived access token and long-lived refresh token
+    - Send refresh token in HttpOnly cookie on login/refresh
+    - Add dedicated /refresh endpoint that reads refresh token from cookie
+    - Invalidate refresh token and clear cookie on logout
+    - Remove localStorage token usage and old refresh logic
+
+[33mcommit 823b5f6f59baa4d2ba1b5af7d8ac3e24304a9cef[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Sun Mar 22 02:50:22 2026 +0200
+
+    Improvment for resert password backend
+
+[33mcommit 66eda060fee4789d8803a15d35ec07f6faebf542[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Sun Mar 22 01:49:35 2026 +0200
+
+    Change the style of the pages
+
+[33mcommit 7f6d3e506b59c4e4bcedb8e3152ad17179fc1298[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Sun Mar 22 01:11:59 2026 +0200
+
+    Normalize line endings to LF
+
+[33mcommit 072900d5690be4fafaa7cefdc1e985f9e23d317c[m
+Author: stefania <57146682+venus222-ux@users.noreply.github.com>
+Date:   Fri Mar 13 01:35:20 2026 +0200
+
+    Create README.md
+
+[33mcommit db97c0bcb64ae3f3a63c99ed9cdc83bed8c5a9bc[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Sat Mar 7 21:40:49 2026 +0200
+
+    fet: add admin dashboard, role permissions, protected routes, Elasticsearch and Docker setupat: add admin dashboard, role permissions, protected routes and Docker setup
+
+[33mcommit bfc54e78150bd1ec7c4c50428195bb57fa1e67dc[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Sat Mar 7 21:37:17 2026 +0200
+
+    feat: add admin dashboard, role middleware, permissions system and protected routes, docker compose file with elasticsearch and redis
+
+[33mcommit 105f32f6b875c2f1652544d3e03d02e8537b6b88[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Wed Mar 4 23:14:21 2026 +0200
+
+    Fix merge conflict in Register.tsx
+
+[33mcommit e5fbdb65a6b8a9146ed2a74c849f5408390ef4a6[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Thu Feb 19 18:56:13 2026 +0200
+
+    Add Jwt middleware, change boostrap/app.php, Providers/AppServiceProvider.php and routes/api.php
+
+[33mcommit 93ce521193e2fd811237203e793cf379306b90fc[m
+Author: STEFANIA IONESCU <stefanya_yo_18@yahoo.com>
+Date:   Tue Feb 3 23:52:13 2026 +0200
+
+    Initial Laravel + React Vite Boilerplate

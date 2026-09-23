@@ -1,0 +1,197 @@
+/* Navbar.module.css — 2026 clean glassmorphism + neumorphic hints */
+
+.navWrapper {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.25rem 1rem;
+  pointer-events: none; /* allows content behind padding to be clickable */
+  transition: padding 0.4s ease;
+}
+
+.glassNav {
+  pointer-events: auto;
+  margin: 0 auto;
+  max-width: 1280px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .glassNav {
+  background: rgba(15, 23, 42, 0.72);
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.brand:hover {
+  transform: scale(1.06) translateY(-1px);
+}
+
+/* Navigation group (pills style) */
+.navGroup {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 0.35rem;
+  border-radius: 14px;
+  gap: 0.4rem;
+}
+
+.dark .navGroup {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Links inside navGroup */
+.link {
+  color: #64748b;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.55rem 1.1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+
+.link:hover {
+  color: #1e293b;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.dark .link {
+  color: #cbd5e1;
+}
+
+.dark .link:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Active link — floating pill effect */
+.activeLink {
+  background: white;
+  color: #0f172a !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.dark .activeLink {
+  background: rgba(255, 255, 255, 0.14);
+  color: white !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* Right side controls */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Theme toggle button */
+.iconBtn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.iconBtn:hover {
+  background: rgba(0, 0, 0, 0.07);
+  color: #6366f1;
+  transform: scale(1.12) rotate(12deg);
+}
+
+.dark .iconBtn {
+  color: #94a3b8;
+}
+
+.dark .iconBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #a855f7;
+}
+
+/* Logout button */
+.logoutBtn {
+  padding: 0.55rem 1.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+  transition: all 0.24s ease;
+}
+
+.logoutBtn:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35);
+  filter: brightness(1.08);
+}
+
+.dark .logoutBtn {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+}
+
+/* Mobile — stack vertically when screen is narrow */
+@media (max-width: 768px) {
+  .glassNav {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1rem 1.25rem;
+    border-radius: 16px;
+  }
+
+  .navGroup {
+    width: 100%;
+    justify-content: center;
+    padding: 0.4rem;
+  }
+
+  .controls {
+    width: 100%;
+    justify-content: center;
+  }
+}
