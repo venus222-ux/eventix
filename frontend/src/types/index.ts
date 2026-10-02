@@ -21,7 +21,12 @@ export interface RegisterRequest {
   password: string;
   password_confirmation: string;
 }
-
+export interface BillingData {
+  billing_country: string;
+  billing_city: string;
+  billing_postal_code: string;
+  billing_street: string;
+}
 // ==================== USER ====================
 
 export interface UserRole {
@@ -42,18 +47,32 @@ export interface User {
 export interface ProfileData {
   email: string;
   created_at?: string;
+  billing_country?: string;
+  billing_city?: string;
+  billing_postal_code?: string;
+  billing_street?: string;
 }
 
 export interface ProfileUpdateRequest {
   email: string;
   password?: string;
   password_confirmation?: string;
+  billing_country?: string;
+  billing_city?: string;
+  billing_postal_code?: string;
+  billing_street?: string;
 }
+
 export interface ProfileFormData {
   email: string;
   password: string;
   password_confirmation: string;
+  billing_country?: string;
+  billing_city?: string;
+  billing_postal_code?: string;
+  billing_street?: string;
 }
+
 // ==================== API ====================
 
 export interface APIMessageResponse {
@@ -90,8 +109,7 @@ export interface DashboardData {
 export type Theme = "light" | "dark";
 
 // types/index.ts
-export type TabType = "home" | "logs" | "users" | "traffic" | "events";
-
+export type TabType = "home" | "logs" | "users" | "traffic" | "events" | "orders" | "refunds";
 export interface AppState {
   isAuth: boolean;
   token: string | null;

@@ -25,6 +25,19 @@ export default function Sidebar({ currentTab, setCurrentTab }: SidebarProps) {
           🎟️ Events
         </div>
 
+<div
+          className={`${styles.navItem} ${currentTab === "orders" ? styles.activeNavItem : ""}`}
+          onClick={() => setCurrentTab("orders")}
+        >
+          🎟️ Orders
+        </div>
+
+<div
+  className={`${styles.navItem} ${currentTab === "refunds" ? styles.activeNavItem : ""}`}
+  onClick={() => setCurrentTab("refunds")}
+>
+  ↩️ Refund requests
+</div>
         {/* Added Traffic Analytics Tab */}
         <div
           className={`${styles.navItem} ${currentTab === "traffic" ? styles.activeNavItem : ""}`}

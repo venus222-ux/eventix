@@ -9,10 +9,11 @@ use App\Http\Resources\EventResource;
 use App\Models\Event;
 use App\Services\EventService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class EventController extends Controller
 {
-    public function __construct(private EventService $events) {}
+    public function __construct(protected EventService $events) {}
 
     public function index(Request $request)
     {
@@ -35,11 +36,16 @@ class EventController extends Controller
 
     public function store(StoreEventRequest $request)
     {
+        // section_prices is not a column of events: keep it out of the mass-assignment payload
         $event = $this->events->create(
-            $request->safe()->except('banner'),
+            $request->safe()->except(['banner', 'section_prices']),
             $request->file('banner'),
             auth()->id()
         );
+
+        if ($request->has('section_prices')) {
+            $event->syncSectionPrices($request->input('section_prices') ?? []);
+        }
 
         return EventResource::make($event->load(['category', 'venue']))
             ->response()->setStatusCode(201);
@@ -52,7 +58,21 @@ class EventController extends Controller
 
     public function update(UpdateEventRequest $request, Event $event)
     {
-        $event = $this->events->update($event, $request->validated());
+        $data = $request->safe()->except('section_prices');
+
+        $venueChanged = isset($data['venue_id'])
+            && (int) $data['venue_id'] !== (int) $event->venue_id;
+
+        $event = $this->events->update($event, $data);
+
+        if ($request->has('section_prices')) {
+            $event->syncSectionPrices($request->input('section_prices') ?? []);
+        } elseif ($venueChanged) {
+            // Old overrides belong to the previous venue's sections
+            $event->syncSectionPrices([]);
+        }
+
+        Cache::forget("event_{$event->slug}");
 
         return EventResource::make($event->load(['category', 'venue']));
     }

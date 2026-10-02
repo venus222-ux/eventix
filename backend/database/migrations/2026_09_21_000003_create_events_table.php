@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('status', 20)->default('draft');
             $table->timestamps();
             $table->softDeletes();
+            $table->unsignedInteger('price_cents')->default(0)->after('status');
+
 
             // Public listing (Day 4): published events ordered by date.
             $table->index(['status', 'starts_at']);

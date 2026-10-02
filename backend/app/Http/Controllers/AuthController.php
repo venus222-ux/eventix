@@ -207,20 +207,44 @@ class AuthController extends Controller
         return new UserResource($user);
     }
 
-    public function updateProfile(UpdateProfileRequest $request)
-    {
-        $user = JWTAuth::parseToken()->authenticate();
+ public function updateProfile(UpdateProfileRequest $request)
+{
+    $user = JWTAuth::parseToken()->authenticate();
+    $data = $request->safe()->only([
+        'billing_country', 'billing_city', 'billing_postal_code', 'billing_street',
+    ]);
 
-        $user->update([
-            'email' => $request->email,
-            'password' => $request->password
-                ? bcrypt($request->password)
-                : $user->password,
-        ]);
-
-        return response()->json(['message' => 'Profile updated']);
+    if (! empty($data['billing_country'])) {
+        $data['billing_country'] = strtoupper($data['billing_country']);
     }
 
+    $user->fill($data);
+    $user->email = $request->email;
+    if ($request->filled('password')) {
+        $user->password = $request->password; // cast-ul 'hashed' face hash
+    }
+    $user->save();
+
+    return response()->json(['message' => 'Profile updated']);
+}
+
+public function updateBilling(Request $request)
+{
+    $user = JWTAuth::parseToken()->authenticate();
+
+    $data = $request->validate([
+        'billing_country'     => ['required', 'string', 'size:2', 'alpha'],
+        'billing_city'        => ['required', 'string', 'max:120'],
+        'billing_postal_code' => ['required', 'string', 'max:20'],
+        'billing_street'      => ['nullable', 'string', 'max:255'],
+    ]);
+    $data['billing_country'] = strtoupper($data['billing_country']);
+
+    $user->update($data);
+
+    return (new UserResource($user->fresh()))
+        ->additional(['message' => 'Billing address updated']);
+}
     public function destroyProfile()
     {
         $user = JWTAuth::parseToken()->authenticate();

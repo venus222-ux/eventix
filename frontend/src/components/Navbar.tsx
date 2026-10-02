@@ -1,5 +1,7 @@
+
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useStore } from "../store/useStore";
+import { useCartStore } from "../store/useCartStore";
 import { logoutRequest } from "../api";
 import styles from "./Navbar.module.css";
 
@@ -7,11 +9,19 @@ export default function Navbar() {
   const { isAuth, initialized, logout, theme, toggleTheme } = useStore();
   const navigate = useNavigate();
 
+  // IMPORTANT:
+  // Aceste hook-uri trebuie să fie înainte de if (!initialized)
+  // pentru a păstra aceeași ordine a hook-urilor la fiecare render.
+  const cartCount = useCartStore((s) => s.seats.length);
+  const hasPending = useCartStore((s) => !!s.pendingOrder);
+
   if (!initialized) {
     // optional: show empty navbar, spinner, or skeleton
     return (
       <div
-        className={`${styles.navWrapper} ${theme === "dark" ? styles.dark : ""}`}
+        className={`${styles.navWrapper} ${
+          theme === "dark" ? styles.dark : ""
+        }`}
       >
         <nav className={styles.glassNav}>
           <span>Loading...</span>
@@ -25,6 +35,9 @@ export default function Navbar() {
       await logoutRequest();
     } catch {
     } finally {
+      // Clear cart + pending reservation before logging out.
+      useCartStore.getState().reset();
+
       logout();
       navigate("/login");
     }
@@ -32,7 +45,9 @@ export default function Navbar() {
 
   return (
     <div
-      className={`${styles.navWrapper} ${theme === "dark" ? styles.dark : ""}`}
+      className={`${styles.navWrapper} ${
+        theme === "dark" ? styles.dark : ""
+      }`}
     >
       <nav className={styles.glassNav}>
         <Link className={styles.brand} to="/">
@@ -46,16 +61,31 @@ export default function Navbar() {
               <NavLink
                 to="/dashboard"
                 className={({ isActive }) =>
-                  `${styles.link} ${isActive ? styles.activeLink : ""}`
+                  `${styles.link} ${
+                    isActive ? styles.activeLink : ""
+                  }`
                 }
               >
                 Dashboard
               </NavLink>
 
               <NavLink
+                to="/events"
+                className={({ isActive }) =>
+                  `${styles.link} ${
+                    isActive ? styles.activeLink : ""
+                  }`
+                }
+              >
+                Events
+              </NavLink>
+
+              <NavLink
                 to="/profile"
                 className={({ isActive }) =>
-                  `${styles.link} ${isActive ? styles.activeLink : ""}`
+                  `${styles.link} ${
+                    isActive ? styles.activeLink : ""
+                  }`
                 }
               >
                 Profile
@@ -66,7 +96,9 @@ export default function Navbar() {
               <NavLink
                 to="/login"
                 className={({ isActive }) =>
-                  `${styles.link} ${isActive ? styles.activeLink : ""}`
+                  `${styles.link} ${
+                    isActive ? styles.activeLink : ""
+                  }`
                 }
               >
                 Login
@@ -75,7 +107,9 @@ export default function Navbar() {
               <NavLink
                 to="/register"
                 className={({ isActive }) =>
-                  `${styles.link} ${isActive ? styles.activeLink : ""}`
+                  `${styles.link} ${
+                    isActive ? styles.activeLink : ""
+                  }`
                 }
               >
                 Register
@@ -85,17 +119,43 @@ export default function Navbar() {
         </div>
 
         <div className={styles.controls}>
+          {/* Cart */}
+          {isAuth && (
+            <NavLink
+              to="/cart"
+              className={styles.iconBtn}
+              aria-label="Cart"
+              title="Cart"
+              style={{ position: "relative" }}
+            >
+              🛒
+
+              {(cartCount > 0 || hasPending) && (
+                <span className="badge rounded-pill text-bg-danger position-absolute top-0 start-100 translate-middle">
+                  {cartCount > 0 ? cartCount : "!"}
+                </span>
+              )}
+            </NavLink>
+          )}
+
+          {/* Theme */}
           <button
             className={styles.iconBtn}
             onClick={toggleTheme}
-            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+            aria-label={`Switch to ${
+              theme === "light" ? "dark" : "light"
+            } mode`}
             title="Toggle theme"
           >
             {theme === "light" ? "🌙" : "☀️"}
           </button>
 
+          {/* Logout */}
           {isAuth && (
-            <button className={styles.logoutBtn} onClick={handleLogout}>
+            <button
+              className={styles.logoutBtn}
+              onClick={handleLogout}
+            >
               Logout
             </button>
           )}
@@ -104,3 +164,4 @@ export default function Navbar() {
     </div>
   );
 }
+

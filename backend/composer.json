@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.2",
         "babenkoivan/elastic-scout-driver": "^5.0",
+        "barryvdh/laravel-dompdf": "^3.1",
         "elasticsearch/elasticsearch": "^9.3",
         "laravel/framework": "^12.0",
         "laravel/horizon": "^5.47",
@@ -19,7 +20,9 @@
         "laravel/tinker": "^2.10.1",
         "mongodb/laravel-mongodb": "^5.5",
         "promphp/prometheus_client_php": "^2.15",
+        "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^6.24",
+        "stripe/stripe-php": "^21.3",
         "tymon/jwt-auth": "^2.3"
     },
     "require-dev": {

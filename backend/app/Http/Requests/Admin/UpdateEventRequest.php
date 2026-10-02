@@ -25,7 +25,10 @@ class UpdateEventRequest extends FormRequest
             'venue_id'    => ['sometimes', 'required', 'integer', 'exists:venues,id'],
             'starts_at'   => ['sometimes', 'required', 'date'],
             'ends_at'     => ['sometimes', 'required', 'date'],
+            'price_cents' => ['sometimes', 'integer', 'min:0', 'max:10000000'],
             'status'      => ['sometimes', Rule::enum(EventStatus::class)],
+            'section_prices'   => ['nullable', 'array'],
+'section_prices.*' => ['nullable', 'integer', 'min:0', 'max:10000000'],
         ];
     }
 

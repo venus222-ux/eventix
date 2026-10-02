@@ -8,6 +8,8 @@ import TrafficDashboard from "../components/AdminDashboard/TrafficDashboard";
 
 import type { DashboardData, User, TabType } from "@/types";
 import EventsTab from "@/components/AdminDashboard/EventsTab";
+import OrdersTab from "@/components/AdminDashboard/OrdersTab";
+import RefundRequestsTab from "@/components/AdminDashboard/RefundRequestsTab";
 
 export default function AdminDashboard() {
   const [data, setData] = useState<DashboardData | null>(null);
@@ -162,6 +164,9 @@ export default function AdminDashboard() {
 
           {/* EVENTS TAB */}
         {currentTab === "events" && <EventsTab />}
+
+        {currentTab === "orders" && <OrdersTab />}
+        {currentTab === "refunds" && <RefundRequestsTab />}
       </main>
     </div>
   );

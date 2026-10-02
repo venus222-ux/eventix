@@ -26,6 +26,10 @@ class StoreEventRequest extends FormRequest
             'starts_at'   => ['required', 'date', 'after:now'],
             'ends_at'     => ['required', 'date', 'after:starts_at'],
             'status'      => ['sometimes', Rule::enum(EventStatus::class)],
+            'price_cents' => ['required', 'integer', 'min:0', 'max:10000000'],
+            'section_prices'   => ['nullable', 'array'],
+'section_prices.*' => ['nullable', 'integer', 'min:0', 'max:10000000'],
+
             'banner'      => [
                 'nullable',
                 'image',

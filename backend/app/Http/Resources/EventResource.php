@@ -19,6 +19,7 @@ class EventResource extends JsonResource
             'banner_url' => $this->banner_url,
             'category' => new CategoryResource($this->whenLoaded('category')),
             'venue' => new VenueResource($this->whenLoaded('venue')),
+            'price_cents' => $this->price_cents,
             'deleted_at' => $this->deleted_at?->toIso8601String(),
             'created_at' => $this->created_at?->toIso8601String(),
         ];

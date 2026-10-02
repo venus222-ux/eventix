@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            // Billing address
+            $table->string('billing_country', 2)->nullable(); // ex: RO, US, DE
+            $table->string('billing_city')->nullable();
+            $table->string('billing_postal_code')->nullable();
+            $table->string('billing_street')->nullable(); // Optional
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

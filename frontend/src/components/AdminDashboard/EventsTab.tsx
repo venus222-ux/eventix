@@ -10,6 +10,12 @@ import {
 } from "../../services/adminEvents";
 import type { EventItem, EventStatus } from "@/types/events";
 
+const money = (c: number) =>
+  (c / 100).toLocaleString(undefined, {
+    style: "currency",
+    currency: "EUR",
+  });
+
 export default function EventsTab() {
   const [items, setItems] = useState<EventItem[]>([]);
   const [page, setPage] = useState(1);
@@ -18,7 +24,7 @@ export default function EventsTab() {
   const [loading, setLoading] = useState(true);
 
   const [q, setQ] = useState("");
-  const [search, setSearch] = useState(""); // debounced value used for the request
+  const [search, setSearch] = useState("");
   const [status, setStatus] = useState<"" | EventStatus>("");
   const [onlyTrashed, setOnlyTrashed] = useState(false);
 
@@ -32,12 +38,15 @@ export default function EventsTab() {
       setSearch(q.trim());
       setPage(1);
     }, 300);
+
     return () => clearTimeout(t);
   }, [q]);
 
   const load = useCallback(async () => {
     const id = ++requestId.current;
+
     setLoading(true);
+
     try {
       const res = await listEvents({
         page,
@@ -45,14 +54,20 @@ export default function EventsTab() {
         status: status || undefined,
         trashed: onlyTrashed ? "only" : undefined,
       });
-      if (id !== requestId.current) return; // a newer request superseded this one
+
+      if (id !== requestId.current) return;
+
       setItems(res.data.data);
       setLastPage(res.data.meta.last_page);
       setTotal(res.data.meta.total);
     } catch {
-      if (id === requestId.current) toast.error("Failed to load events");
+      if (id === requestId.current) {
+        toast.error("Failed to load events");
+      }
     } finally {
-      if (id === requestId.current) setLoading(false);
+      if (id === requestId.current) {
+        setLoading(false);
+      }
     }
   }, [page, search, status, onlyTrashed]);
 
@@ -77,25 +92,41 @@ export default function EventsTab() {
   };
 
   const handleDelete = async (ev: EventItem) => {
-    if (!window.confirm(`Delete "${ev.title}"? You can restore it later.`)) return;
+    if (
+      !window.confirm(
+        `Delete "${ev.title}"? You can restore it later.`
+      )
+    ) {
+      return;
+    }
+
     try {
       await deleteEvent(ev.id);
+
       toast.success("Event deleted");
-      // if this was the last row on the page, step back one page
-      if (items.length === 1 && page > 1) setPage(page - 1);
-      else load();
+
+      if (items.length === 1 && page > 1) {
+        setPage(page - 1);
+      } else {
+        load();
+      }
     } catch (err: any) {
-      toast.error(err.response?.data?.message || "Delete failed");
+      toast.error(
+        err.response?.data?.message || "Delete failed"
+      );
     }
   };
 
   const handleRestore = async (ev: EventItem) => {
     try {
       await restoreEvent(ev.id);
+
       toast.success("Event restored");
       load();
     } catch (err: any) {
-      toast.error(err.response?.data?.message || "Restore failed");
+      toast.error(
+        err.response?.data?.message || "Restore failed"
+      );
     }
   };
 
@@ -103,7 +134,9 @@ export default function EventsTab() {
     <div className={styles.tabFadeIn}>
       <header className={styles.header}>
         <h2>Events</h2>
-        <p className={styles.subtitle}>Create and manage events, venues and banners.</p>
+        <p className={styles.subtitle}>
+          Create and manage events, venues and banners.
+        </p>
       </header>
 
       <div className={local.toolbar}>
@@ -112,6 +145,7 @@ export default function EventsTab() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
         />
+
         <select
           value={status}
           onChange={(e) => {
@@ -124,6 +158,7 @@ export default function EventsTab() {
           <option value="published">Published</option>
           <option value="cancelled">Cancelled</option>
         </select>
+
         <label>
           <input
             type="checkbox"
@@ -135,14 +170,22 @@ export default function EventsTab() {
           />{" "}
           Deleted only
         </label>
+
         <span className={local.spacer} />
-        <button className={local.primaryBtn} onClick={openCreate}>
+
+        <button
+          className={local.primaryBtn}
+          onClick={openCreate}
+        >
           + New event
         </button>
       </div>
 
       <div className={styles.tableWrapper}>
-        <div className={styles.tableHeader}>Total events: {total}</div>
+        <div className={styles.tableHeader}>
+          Total events: {total}
+        </div>
+
         <table className={styles.adminTable}>
           <thead>
             <tr>
@@ -151,45 +194,87 @@ export default function EventsTab() {
               <th>Category</th>
               <th>Venue</th>
               <th>Starts</th>
+              <th>Price</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
+
           <tbody className={loading ? local.muted : ""}>
             {!loading && items.length === 0 && (
               <tr>
-                <td colSpan={7} style={{ textAlign: "center", padding: 24 }}>
+                <td
+                  colSpan={8}
+                  style={{
+                    textAlign: "center",
+                    padding: 24,
+                  }}
+                >
                   No events found
                 </td>
               </tr>
             )}
+
             {items.map((ev) => (
               <tr key={ev.id}>
                 <td>
                   {ev.banner_url ? (
-                    <img className={local.thumb} src={ev.banner_url} alt="" loading="lazy" />
+                    <img
+                      className={local.thumb}
+                      src={ev.banner_url}
+                      alt=""
+                      loading="lazy"
+                    />
                   ) : (
                     <div className={local.thumb} />
                   )}
                 </td>
+
                 <td>{ev.title}</td>
+
                 <td>{ev.category?.name ?? "—"}</td>
-                <td>{ev.venue ? `${ev.venue.name}, ${ev.venue.city}` : "—"}</td>
-                <td>{new Date(ev.starts_at).toLocaleString()}</td>
+
                 <td>
-                  <span className={`${local.badge} ${local[ev.status]}`}>{ev.status}</span>
+                  {ev.venue
+                    ? `${ev.venue.name}, ${ev.venue.city}`
+                    : "—"}
                 </td>
+
+                <td>
+                  {new Date(ev.starts_at).toLocaleString()}
+                </td>
+
+                <td>{money(ev.price_cents)}</td>
+
+                <td>
+                  <span
+                    className={`${local.badge} ${local[ev.status]}`}
+                  >
+                    {ev.status}
+                  </span>
+                </td>
+
                 <td>
                   {ev.deleted_at ? (
-                    <button className={local.ghostBtn} onClick={() => handleRestore(ev)}>
+                    <button
+                      className={local.ghostBtn}
+                      onClick={() => handleRestore(ev)}
+                    >
                       Restore
                     </button>
                   ) : (
                     <>
-                      <button className={local.ghostBtn} onClick={() => openEdit(ev)}>
+                      <button
+                        className={local.ghostBtn}
+                        onClick={() => openEdit(ev)}
+                      >
                         Edit
                       </button>
-                      <button className={styles.deleteBtn} onClick={() => handleDelete(ev)}>
+
+                      <button
+                        className={styles.deleteBtn}
+                        onClick={() => handleDelete(ev)}
+                      >
                         Delete
                       </button>
                     </>
@@ -202,13 +287,23 @@ export default function EventsTab() {
       </div>
 
       <div className={local.pager}>
-        <button className={local.ghostBtn} disabled={page <= 1} onClick={() => setPage(page - 1)}>
+        <button
+          className={local.ghostBtn}
+          disabled={page <= 1}
+          onClick={() => setPage(page - 1)}
+        >
           ← Prev
         </button>
+
         <span>
           Page {page} / {lastPage}
         </span>
-        <button className={local.ghostBtn} disabled={page >= lastPage} onClick={() => setPage(page + 1)}>
+
+        <button
+          className={local.ghostBtn}
+          disabled={page >= lastPage}
+          onClick={() => setPage(page + 1)}
+        >
           Next →
         </button>
       </div>
@@ -223,3 +318,4 @@ export default function EventsTab() {
     </div>
   );
 }
+

@@ -15,6 +15,11 @@ const ForgotPassword = lazy(() => import("./pages/ForgetPassword"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const EventsListPage = lazy(() => import("./pages/Public/EventsListPage"));
+const EventDetailPage = lazy(() => import("./pages/Public/EventDetailPage"));
+const OrderConfirmationPage = lazy(() => import("./pages/Public/OrderConfirmationPage"));
+const CheckoutPage = lazy(() => import("./pages/Public/CheckoutPage"));
+const CartPage = lazy(() => import("./pages/Public/CartPage"));
 
 const AuthBootstrap = () => {
   useAuthRestore(); // runs the auth restoration logic
@@ -45,6 +50,9 @@ const App = () => {
         >
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            
             <Route
               path="/login"
               element={
@@ -92,6 +100,26 @@ const App = () => {
               element={
                 <ProtectedRoute role="admin">
                   <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+          <Route path="/events" element={<EventsListPage />} />
+            <Route path="/events/:slug" element={<EventDetailPage />} />
+
+            <Route
+    path="/checkout/:reservationId"
+    element={
+      <ProtectedRoute>
+        <CheckoutPage />
+      </ProtectedRoute>
+    }
+  />
+  
+            <Route
+              path="/orders/:id/confirmation"
+              element={
+                <ProtectedRoute>
+                  <OrderConfirmationPage />
                 </ProtectedRoute>
               }
             />

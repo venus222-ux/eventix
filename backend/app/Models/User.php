@@ -23,6 +23,10 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'billing_country',
+        'billing_city',
+        'billing_postal_code',
+        'billing_street',
     ];
 
     /**
@@ -59,4 +63,6 @@ class User extends Authenticatable implements JWTSubject
             'role' => $this->getRoleNames()->first(),
         ];
     }
+
+  
 }

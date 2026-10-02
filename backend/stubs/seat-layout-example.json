@@ -1,0 +1,5 @@
+[
+  { "name": "VIP", "rows": 3, "seats_per_row": 10, "price_cents": 50000 },
+  { "name": "Categoria 1", "rows": 8, "seats_per_row": 20, "price_cents": 25000 },
+  { "name": "Categoria 2", "rows": 10, "seats_per_row": 25, "price_cents": 12000 }
+]

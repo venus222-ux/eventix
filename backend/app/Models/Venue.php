@@ -21,4 +21,10 @@ class Venue extends Model
     {
         return $this->hasMany(Event::class);
     }
+
+    // NEW (Day 3)
+    public function sections(): HasMany
+    {
+        return $this->hasMany(Section::class);
+    }
 }
